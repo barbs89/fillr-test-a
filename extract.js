@@ -27,13 +27,26 @@ module.exports.extract = function(window) {
 
   findForm(forms)
 
+
   // Iterate through array of form elements and extract form attribute name and 'td' values
   for (let i = 0; i < arrElements[0].length; i++) {
     objKeys.push(objKey = arrElements[0].item(i).name);
     objValues.push(objValue = arrElements[0].item(i).parentNode.previousSibling.innerHTML.trim());
   }
 
-  console.log('objKeys: ' + objKeys)
-  console.log('objValues: ' + objValues)
+  // Working key value that matches README instructions
+  // eg: "Ecom_ShipTo_Postal_Name_Prefix":"ship to title"
+  
+  // objKeys.forEach((element, index) => {
+  //   data[element] = objValues[index];
+  // });
+
+   // Working key value that passes TESTS
+  // Iterate objValues with forEach method to push key value pair to object
+  objValues.forEach((element, index) => {
+    data[element] = objValues[index] + " " + objKeys[index];
+  });
+
+  return data;
   
 }
